@@ -1,0 +1,3 @@
+
+from .education_serializer import EducationSerializer
+from .profile_serializer import ProfileSerializer
