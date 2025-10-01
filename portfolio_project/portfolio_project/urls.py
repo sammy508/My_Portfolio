@@ -17,11 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
-from portfolio.views.data_views import SingleProfileView
+from portfolio.views.data_views import SingleProfileView,SkillView,EducationView,ProjectsView,CertificatesView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path("profile/", SingleProfileView.as_view(), name="single-profile"),
+    path("skills/", SkillView.as_view(), name="single-profile"),
+    path("education/", EducationView.as_view(), name="single-profile"),
+    path("projects/", ProjectsView.as_view(), name="single-profile"),
+    path("certificate/", CertificatesView.as_view(), name="single-profile"),
 ]
