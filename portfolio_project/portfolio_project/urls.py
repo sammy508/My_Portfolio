@@ -20,12 +20,33 @@ from django.urls import path,include
 from portfolio.views.data_views import SingleProfileView,SkillView,EducationView,ProjectsView,CertificatesView
 
 
+# For apis
+
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+
+#     # path("profile/", SingleProfileView.as_view(), name="single-profile"),
+#     # path("skills/", SkillView.as_view(), name="single-profile"),
+#     # path("education/", EducationView.as_view(), name="single-profile"),
+#     # path("projects/", ProjectsView.as_view(), name="single-profile"),
+#     # path("certificate/", CertificatesView.as_view(), name="single-profile"),
+# ]
+
+
+
+
+from portfolio.views import portfolio_view  
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    path("profile/", SingleProfileView.as_view(), name="single-profile"),
-    path("skills/", SkillView.as_view(), name="single-profile"),
-    path("education/", EducationView.as_view(), name="single-profile"),
-    path("projects/", ProjectsView.as_view(), name="single-profile"),
-    path("certificate/", CertificatesView.as_view(), name="single-profile"),
+    path('', portfolio_view.home, name='home'),  # Portfolio homepage
+    path('skills/', portfolio_view.skills_page, name='skills'),
+    path('education/', portfolio_view.education_page, name='education'),
+    path('projects/', portfolio_view.projects_page, name='projects'),
+    path('certificates/', portfolio_view.certificates_page, name='certificates'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
